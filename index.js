@@ -47,6 +47,63 @@ const questions = [{
           }
         },
       },
+      {
+        type: 'input',
+        name: 'description',
+        message: 'What is the description of your repository? (Required)',
+        validate: nameInput => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log('Please enter a description of the repository.');
+            return false;
+          }
+        },
+      },
+
+        {
+            type: "checkbox",
+            name: "badges",
+            message: "What badges would you like to display? (Check all that apply)",
+            choices: [
+              "Language Count",
+              "Top Language",
+              "Code Size",
+              "Repo Size",
+              "Issues",
+              "Issues Closed",
+              "Release Version by Date",
+            ],
+            default:['Issues'],
+          },
+          {
+            type: "confirm",
+            name: "confirmInstall",
+            message:
+              "Would you like to enter some information about how install your project?",
+              default: false,
+          },
+          {
+            type: 'input',
+            name: 'installation',
+            message: 'Please list installation instructions in any.',
+            // the <when> = if the person selects a installation process allow them to input steps
+            when: ({ confirmInstallation }) => {
+              if (confirmInstallation) {
+                return true;
+              } else {
+                return false;
+              }
+            },
+          },
+          {
+            type: "confirm",
+            name: "confirmUse",
+            message:
+              "Would you like to enter some information about how to use your project?",
+            default: false,
+          },
+
 
      
     
@@ -54,10 +111,30 @@ const questions = [{
 
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, error => {
+        if (error) {
+          return console.log('Sorry there was an error : ' + error);
+        }
+      })
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+//function init() {}
+async function init() {
+    try {
+      const userAnswers = await inquirer.prompt(questions);
+      console.log('Thank you! The current data is being processed into your README.md: ', userAnswers);
+      // get markdown template from generateMarkdown.js passing the answers as parameter
+      const myMarkdown = generateMarkdown(userAnswers);
+      console.log(myMarkdown);
+      //write the readme file after the markdown is made
+      await createReadMe('README1.md', myMarkdown);
+      
+    } catch (error) {
+      console.log('Sorry there was an error.' + error);
+    }
+  };
 
 // Function call to initialize app
 init();
