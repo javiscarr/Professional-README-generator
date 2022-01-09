@@ -103,7 +103,18 @@ const questions = [{
               "Would you like to enter some information about how to use your project?",
             default: false,
           },
-
+          { //should the user confirm
+            type: 'input',
+            name: 'instructions',
+            message: 'Please list instructions for using your application. Although not required, it is recommended to add any descriptive images of usages.',
+            when: ({ confirmUsage }) => {
+              if (confirmUsage) {
+                return true;
+              } else {
+                return false;
+              }
+            }
+          },
 
      
     
