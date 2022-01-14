@@ -23,7 +23,7 @@ const questions = [{
       {
         type: "input",
         name: "accountEmail",
-        message: "What is your github email address? (Required)",
+        message: "What is your email address? (Required)",
         validate: (accountEmailInput) => {
           if(accountEmailInput) {
             return true;
@@ -115,7 +115,24 @@ const questions = [{
               }
             }
           },
-
+          {
+            type: 'checkbox',
+            name: 'license',
+            message: 'Please choose a license.',
+            choices: ['GNU AGPLv3', 'GNU GPLv3',
+              'GNU LGPLv3', 'Mozilla Public License 2.0',
+              'Apache License 2.0', 'MIT License', 'Boost Software License 1.0',
+              'The Unlicense'],
+            validate: nameInput => {
+              if (nameInput) {
+                return true;
+              } else {
+                console.log('Please select a license.');
+                return false;
+              }
+            }
+          },
+          
      
     
         ];
@@ -129,6 +146,8 @@ function writeToFile(fileName, data) {
         }
       })
 }
+
+const createReadMe = util.promisify(writeToFile);
 
 // TODO: Create a function to initialize app
 //function init() {}
