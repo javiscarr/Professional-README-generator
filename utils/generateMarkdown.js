@@ -31,7 +31,7 @@ function generateMarkdown(data) {
     licenseLink = 'https://choosealicense.com/licenses/unlicense/';
   };
 //badges to be added to the README
-  const generateBadges = (badges,user,repo)=> {
+  const generateBadges = (badges,username,projectTitle)=> {
     let badgeArray = [];
     if(!badges) {
       return '';
@@ -39,25 +39,25 @@ function generateMarkdown(data) {
     badges.forEach(e => {
       switch(e){
         case "Language Count":
-          badgeArray.push('![GitHub language count](https://img.shields.io/github/languages/count/' + user + '/' +repo +')');
+          badgeArray.push('![GitHub language count](https://img.shields.io/github/languages/count/' + username + '/' +projectTitle +')');
           break;
         case "Top Language":
-          badgeArray.push('![GitHub top language](https://img.shields.io/github/languages/top/'+user+'/'+repo+')');
+          badgeArray.push('![GitHub top language](https://img.shields.io/github/languages/top/'+username+'/'+projectTitle+')');
           break;
         case "Code Size":
-          badgeArray.push('![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/'+user+'/'+repo+')');
+          badgeArray.push('![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/'+username+'/'+projectTitle+')');
           break;
         case "Repo Size":
-          badgeArray.push('![GitHub repo size](https://img.shields.io/github/repo-size/'+user+'/'+repo+')');
+          badgeArray.push('![GitHub repo size](https://img.shields.io/github/repo-size/'+username+'/'+projectTitle+')');
           break;
         case "Issues":
-          badgeArray.push('![GitHub issues](https://img.shields.io/github/issues-raw/'+user+'/'+repo+')');
+          badgeArray.push('![GitHub issues](https://img.shields.io/github/issues-raw/'+username+'/'+projectTitle+')');
           break;
         case "Issues Closed":
-          badgeArray.push('![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/'+user+'/'+repo+')');
+          badgeArray.push('![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/'+username+'/'+projectTitle+')');
           break;
         case "Release Version by Date":
-          badgeArray.push('![GitHub release (latest by date)](https://img.shields.io/github/v/release/'+user+'/'+repo+')');
+          badgeArray.push('![GitHub release (latest by date)](https://img.shields.io/github/v/release/'+username+'/'+projectTitle+')');
           break;
         default:
           break;
@@ -121,9 +121,13 @@ let tableOfContents =
   if (data.installation) {
     markdownTemplate +=
       `
+
+
 ## Installation
     
   _Follow these steps to properly install this application:_
+
+
   ${data.installation}`
   };
 
@@ -131,8 +135,13 @@ let tableOfContents =
     if (data.instructions) {
       markdownTemplate +=
       `
+
+
  ## Usage
-      _Instructions for use:_
+
+  _Instructions for use:_
+
+
       ${data.instructions}`
       };
 
@@ -140,9 +149,13 @@ let tableOfContents =
   if (data.contribution) {
     markdownTemplate +=
       `
+
       
 ## Contribution
+
   _If you would like to contribute, please adhere to these guidelines:_
+
+
   ${data.contribution}`
   };
     
@@ -151,8 +164,12 @@ let tableOfContents =
       markdownTemplate +=
         `
         
+
   ## Testing
-    _Instructions for testing application:_
+
+_Instructions for testing application:_
+
+
     ${data.testing}`
     };
 
@@ -163,8 +180,10 @@ let tableOfContents =
 ## Questions
       
   _For further questions:_
+
   ${data.questions}
   
+
 
   _Contact Information:_
 
