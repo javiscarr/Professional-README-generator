@@ -86,7 +86,7 @@ const questions = [{
           {
             type: 'input',
             name: 'installation',
-            message: 'Please list installation instructions in any.',
+            message: 'Please list installation instructions if any.',
             // once the person selects to list the installation process, this will allow them to input the steps
             when: ({ confirmInstall }) => {
               if (confirmInstall) {
@@ -169,10 +169,21 @@ const questions = [{
               }
             }
           },
-          
+          {
+            type: 'input',
+            name: 'questions',
+            message: 'Please list instructions for those who wish to contact you.',
+            validate: (nameInput) => {
+              if (nameInput) {
+                return true;
+              } else {
+                return false;
+              }
+            }
+          }];
      
     
-        ];
+        
 
 
 // TODO: Create a function to write README file

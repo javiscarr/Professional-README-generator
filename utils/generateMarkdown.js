@@ -71,13 +71,16 @@ let markdownTemplate =
 //title, badge, and description
     
 `# ${data.projectTitle}
+
 ## Description
 ${data.description}
+
 ![badge](https://img.shields.io/badge/license-${licenseOption}-brightorange)
+
 You can access more badges and their purposes at [shields.io](https://shields.io)
 `;
 
-${generateBadges(data.badges,data.username,data.projectTitle)}
+generateBadges(data.badges,data.username,data.projectTitle)
   
 let tableOfContents =
 `## Table of Contents`;
@@ -89,28 +92,19 @@ let tableOfContents =
     if (data.instructions) {
       tableOfContents +=
       `
-      * [Usage](#usage)`
+  * [Usage](#usage)`
    };
     if (data.contribution) {
       tableOfContents +=
         `
-        * [Installation](#installation)`
+  * [Contributing](#contributing)`
     };
-    if (data.instructions) {
+    if (data.testing) {
         tableOfContents +=
         `
-        * [Installation](#installation)`
-   };
-    if (data.instructions) {
-     tableOfContents +=
-     `
-     * [Contribution](#contribution)`
-  };
-  if (data.testing) {
-    tableOfContents +=
-      `
   * [Testing](#testing)`
-  };
+   };
+ 
   //append table to template
   markdownTemplate += tableOfContents;
 
@@ -121,6 +115,74 @@ let tableOfContents =
   markdownTemplate +=
     `
   * [License](#license)
-    
+    `;
 
+    //installation
+  if (data.installation) {
+    markdownTemplate +=
+      `
+## Installation
+    
+  _Follow these steps to properly install this application:_
+  ${data.installation}`
+  };
+
+    //usage
+    if (data.instructions) {
+      markdownTemplate +=
+      `
+ ## Usage
+      _Instructions for use:_
+      ${data.instructions}`
+      };
+
+      //contributions
+  if (data.contribution) {
+    markdownTemplate +=
+      `
+      
+## Contribution
+  _If you would like to contribute, please adhere to these guidelines:_
+  ${data.contribution}`
+  };
+    
+    //testing
+    if (data.testing) {
+      markdownTemplate +=
+        `
+        
+  ## Testing
+    _Instructions for testing application:_
+    ${data.testing}`
+    };
+
+      //questions
+      markdownTemplate +=
+      `
+      
+## Questions
+      
+  _For further questions:_
+  ${data.questions}
+  
+
+  _Contact Information:_
+
+  GitHub: [${data.username}](https://github.com/${data.username})
+
+
+  Email: [${data.accountEmail}](mailto:${data.accountEmail})`;
+  
+  markdownTemplate +=
+  `
+
+  ## License
+      
+  _This application has the ${data.license}._
+      
+  For more information please view the [license description](${licenseLink}).
+  
+  `;
+  return markdownTemplate;
+}
 module.exports = generateMarkdown;
