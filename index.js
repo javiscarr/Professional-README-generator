@@ -9,7 +9,7 @@ const questions = [{
    
     
         type: "input",
-        name: "accountName",
+        name: "username",
         message: "What is your github username? (Required)",
         validate: (accountNameInput) => {
           if(accountNameInput) {
@@ -101,7 +101,7 @@ const questions = [{
             name: "confirmUse",
             message:
               "Would you like to enter some information about how to use your project?",
-            default: false,
+           
           },
           { //should the user confirm
             type: 'input',
@@ -119,15 +119,33 @@ const questions = [{
             type: 'checkbox',
             name: 'license',
             message: 'Please choose a license.',
-            choices: ['GNU AGPLv3', 'GNU GPLv3',
-              'GNU LGPLv3', 'Mozilla Public License 2.0',
-              'Apache License 2.0', 'MIT License', 'Boost Software License 1.0',
+            choices: ['GNU AGPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0',
+              'MIT License', 'Boost Software License 1.0',
               'The Unlicense'],
             validate: nameInput => {
               if (nameInput) {
                 return true;
               } else {
                 console.log('Please select a license.');
+                return false;
+              }
+            }
+          },
+
+          {
+            type: 'confirm',
+            name: 'confirmContribution',
+            message: 'May other developers contribute to your repository?'
+          },
+
+          {
+            type: 'input',
+            name: 'contribution',
+            message: 'Please explain how other developers may contribute to your project.',
+            when: ({ confirmContribution }) => {
+              if (confirmContribution) {
+                return true;
+              } else {
                 return false;
               }
             }
