@@ -81,21 +81,40 @@ const questions = [{
             name: "confirmInstall",
             message:
               "Would you like to enter some information about how install your project?",
-              default: false,
+          
           },
           {
             type: 'input',
             name: 'installation',
             message: 'Please list installation instructions in any.',
-            // the <when> = if the person selects a installation process allow them to input steps
-            when: ({ confirmInstallation }) => {
-              if (confirmInstallation) {
+            // once the person selects to list the installation process, this will allow them to input the steps
+            when: ({ confirmInstall }) => {
+              if (confirmInstall) {
                 return true;
               } else {
                 return false;
               }
             },
           },
+
+          {
+            type: 'confirm',
+            name: 'testConfirm',
+            message: 'Is testing available?'
+          },
+          {
+            type: 'input',
+            name: 'testing',
+            message: 'Please explain how users may test your application.',
+            when: ({ testConfirm }) => {
+              if (testConfirm) {
+                return true;
+              } else {
+                return false;
+              }
+            }
+          },
+
           {
             type: "confirm",
             name: "confirmUse",
@@ -107,8 +126,8 @@ const questions = [{
             type: 'input',
             name: 'instructions',
             message: 'Please list instructions for using your application. Although not required, it is recommended to add any descriptive images of usages.',
-            when: ({ confirmUsage }) => {
-              if (confirmUsage) {
+            when: ({ confirmUse }) => {
+              if (confirmUse) {
                 return true;
               } else {
                 return false;
@@ -172,12 +191,12 @@ const createReadMe = util.promisify(writeToFile);
 async function init() {
     try {
       const userAnswers = await inquirer.prompt(questions);
-      console.log('Thank you! The current data is being processed into your README.md: ', userAnswers);
+      console.log('You have successfully created your README.md: ', userAnswers);
       // get markdown template from generateMarkdown.js passing the answers as parameter
       const myMarkdown = generateMarkdown(userAnswers);
       console.log(myMarkdown);
       //write the readme file after the markdown is made
-      await createReadMe('README1.md', myMarkdown);
+      await createReadMe('README.md', myMarkdown);
       
     } catch (error) {
       console.log('Sorry there was an error.' + error);
