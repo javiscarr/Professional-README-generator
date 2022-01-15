@@ -32,7 +32,7 @@ You can access more badges and their purposes at [shields.io](https://shields.io
 
       To use this application you would run the command node index.js in the command line interface. You will then receive prompts from the inquirer package that will create sections and dynamically format your README file.
 
-![Screenshot](./images/snapshot)
+![Screenshot](./images/snapshot.JPG)
 
   [Demonstration video](https://vimeo.com/666174229/21e3ec7af1)
       
