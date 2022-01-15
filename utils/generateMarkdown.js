@@ -139,7 +139,7 @@ let tableOfContents =
 
  ## Usage
 
-  _Instructions for use:_
+_Instructions for use:_
 
 
       ${data.instructions}`
