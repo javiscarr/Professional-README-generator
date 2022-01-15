@@ -22,7 +22,9 @@ You can access more badges and their purposes at [shields.io](https://shields.io
 
 
   In order to run this application, you would need to install three dependencies: inquirer, fs and util. You would do this by running npm install (name of dependency installing). By installing the inquirer dependency, you will be allowing command line interface to read question prompts needed to create a README file.
-
+  
+  ![we can code this gif]
+  (https://media.giphy.com/media/fwbZnTftCXVocKzfxR/giphy.gif)
 
  ## Usage
 
@@ -31,6 +33,10 @@ You can access more badges and their purposes at [shields.io](https://shields.io
 
       To use this application you would run the command node index.js in the command line interface. You will then receive prompts from the inquirer package that will create sections and dynamically format your README file.
 
+![Video demonstration showing the completed README file]
+  (https://vimeo.com/666176906/45e40a3007)
+
+  [Demonstration video](https://vimeo.com/666174229/21e3ec7af1)
       
 ## Contribution
 
